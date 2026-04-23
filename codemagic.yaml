@@ -9,16 +9,14 @@ workflows:
       vars:
         BUNDLE_ID: "com.studentlink.app"
     scripts:
-      - name: Install dependencies
-        script: npm install
-      - name: Add iOS platform
-        script: ./node_modules/.bin/cap add ios || true
-      - name: Sync Capacitor
-        script: ./node_modules/.bin/cap sync ios
-      - name: Install CocoaPods
-        script: cd ios/App && pod install
-      - name: Build IPA (unsigned)
+      - name: Build iOS
         script: |
+          set -e
+          npm install
+          npm install -g @capacitor/cli
+          cap add ios || true
+          cap sync ios
+          cd ios/App && pod install && cd ../..
           xcodebuild \
             -workspace ios/App/App.xcworkspace \
             -scheme App \
