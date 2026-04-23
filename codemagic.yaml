@@ -13,7 +13,8 @@ workflows:
         script: |
           set -e
           npm install --prefer-offline=false
-          npx cap add ios || true
+          rm -rf ios/App
+          npx cap add ios
           npx cap sync ios
           cd ios/App && pod install && cd ../..
           xcodebuild \
