@@ -16,20 +16,6 @@ workflows:
           npx cap add ios
           npx cap sync ios
           cd ios/App && pod install && cd ../..
-          cat > ios/App/ExportOptions.plist << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>method</key>
-    <string>ad-hoc</string>
-    <key>compileBitcode</key>
-    <false/>
-    <key>signingStyle</key>
-    <string>manual</string>
-</dict>
-</plist>
-EOF
           xcodebuild \
             -workspace ios/App/App.xcworkspace \
             -scheme App \
@@ -44,6 +30,6 @@ EOF
             -exportArchive \
             -archivePath $CM_BUILD_DIR/App.xcarchive \
             -exportPath $CM_BUILD_DIR/ipa \
-            -exportOptionsPlist ios/App/ExportOptions.plist
+            -exportOptionsPlist ExportOptions.plist
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
