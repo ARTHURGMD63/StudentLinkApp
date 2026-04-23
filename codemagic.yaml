@@ -13,9 +13,8 @@ workflows:
         script: |
           set -e
           npm install
-          npm install -g @capacitor/cli
-          cap add ios || true
-          cap sync ios
+          npx cap add ios || true
+          npx cap sync ios
           cd ios/App && pod install && cd ../..
           xcodebuild \
             -workspace ios/App/App.xcworkspace \
