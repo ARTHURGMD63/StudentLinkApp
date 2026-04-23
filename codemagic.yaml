@@ -26,10 +26,8 @@ workflows:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             archive
-          xcodebuild \
-            -exportArchive \
-            -archivePath $CM_BUILD_DIR/App.xcarchive \
-            -exportPath $CM_BUILD_DIR/ipa \
-            -exportOptionsPlist ExportOptions.plist
+          mkdir -p $CM_BUILD_DIR/ipa/Payload
+          cp -r $CM_BUILD_DIR/App.xcarchive/Products/Applications/App.app $CM_BUILD_DIR/ipa/Payload/
+          cd $CM_BUILD_DIR/ipa && zip -r StudentLink.ipa Payload/
     artifacts:
-      - $CM_BUILD_DIR/ipa/*.ipa
+      - $CM_BUILD_DIR/ipa/StudentLink.ipa
