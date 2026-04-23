@@ -12,7 +12,7 @@ workflows:
       - name: Build iOS
         script: |
           set -e
-          npm install
+          npm install --prefer-offline=false
           npx cap add ios || true
           npx cap sync ios
           cd ios/App && pod install && cd ../..
