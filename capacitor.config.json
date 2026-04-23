@@ -1,0 +1,15 @@
+{
+  "appId": "com.studentlink.app",
+  "appName": "StudentLink",
+  "webDir": "www",
+  "server": {
+    "url": "https://titrerncp-production.up.railway.app",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "ios": {
+    "contentInset": "automatic"
+  }
+}
